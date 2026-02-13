@@ -1,33 +1,50 @@
 'use strict';
 
-const status = document.getElementById("status");
+const statusProduct = document.getElementById("statusProduct");
 const productList = document.getElementById("productList");
-
 
 
 async function fetchGames() {
     try {
-        status.textContent = "Loading...";
+        statusProduct.textContent = "Loading...";
 
         const response = await fetch("https://v2.api.noroff.dev/gamehub");
-            headers: {
-                Authorization: ""
-            }
+
 
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }
 
-        const games = await response.json();
+        const result = await response.json();
 
-        status.textContent = "";
-        console.log(games); //temporary
+        // v2 API returns data in "data"
+        const games = result.data;
 
+        statusProduct.textContent = "";
+
+        renderGames(games);
 
     } catch (error) {
-        status.textContent = "Something went wrong.";
+        statusProduct.textContent = "Something went wrong.";
         console.error(error);
     }
+}
+
+
+function renderGames(games) {
+    productList.innerHTML = "";
+
+    games.forEach((game) => {
+        productList.innerHTML += `
+      <article class="product-card">
+        <a href="product.html?id=${game.id}">
+          <img src="${game.image?.url ?? game.image}" alt="${game.title}" />
+          <h2>${game.title}</h2>
+        </a>
+        <p>${game.price} kr</p>
+      </article>
+    `;
+    });
 }
 
 fetchGames();
