@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Home</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>GameHub</h1>
+
+
+        <nav>
+            <a href="/checkout/index.html" id="cartlink">
+                Cart (<span id="cartcount">0</span>)
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section aria-label="Filter products">
+            <label for="genreFilter">Filter:</label>
+            <select id="genreFilter">
+                <option value="all">All</option>
+            </select>
+        </section>
+
+        <p id="status" role="status" aria-live="polite"></p>
+
+        <section id="productList" aria-label="Productlist"></section>
+
+        <script src="js/index.js"></script>
+    </main>
+</body>
+</html>
