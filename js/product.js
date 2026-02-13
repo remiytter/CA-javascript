@@ -32,9 +32,16 @@ async function fetchGameById(gameId) {
                 <h1>${game.title}</h1>
                 <img src="${game.image.url}" alt="${game.title}">
                 <p>${game.description ?? ""}</p>
-                <p><strong>${game.price} kr</strong></p>
+                <p><strong>${game.price} usd</strong></p>
+                <button id="addToCart">Add to cart</button>
             </article>
             `;
+
+        const button =document.getElementById("addToCart");
+
+        button.addEventListener("click", () => {
+            addToCart(game);
+        })
     } catch (error) {
         statusProduct.textContent = "Something went wrong.";
         console.error(error);
@@ -42,3 +49,18 @@ async function fetchGameById(gameId) {
 }
 
 fetchGameById(id);
+
+function addToCart(game) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        id: game.id,
+        title: game.title,
+        price: game.price,
+        image: game.image.url
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Added to cart!")
+}
