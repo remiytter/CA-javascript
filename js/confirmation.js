@@ -9,4 +9,4 @@ localStorage.removeItem("cart");
 
 
 // Vis melding
-messageEl.textContent = "Thank you! Your order is confirmed.";
+messageEl.textContent = "Thank you! Your order is confirmed."; 
