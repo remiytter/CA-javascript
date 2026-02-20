@@ -28,7 +28,6 @@ async function fetchGames() {
 
     } catch (error) {
         statusProduct.textContent = "Something went wrong.";
-        console.error(error);
     }
 }
 
@@ -43,7 +42,7 @@ function renderGames(games) {
           <img src="${game.image?.url ?? game.image}" alt="${game.title}" />
           <h2>${game.title}</h2>
         </a>
-        <p>${game.price} kr</p>
+        <p>${game.price} usd</p>
       </article>
     `;
     });

@@ -34,17 +34,24 @@ async function fetchGameById(gameId) {
                 <p>${game.description ?? ""}</p>
                 <p><strong>${game.price} usd</strong></p>
                 <button id="addToCart">Add to cart</button>
+                <p id="addMessage" aria-live="polite"></p>
             </article>
             `;
 
         const button =document.getElementById("addToCart");
+        const message = document.getElementById("addMessage");
 
         button.addEventListener("click", () => {
             addToCart(game);
-        })
+
+            message.textContent = "Added to cart";
+
+            setTimeout(() => {
+                message.textContent = "";
+            }, 1500);
+        });
     } catch (error) {
         statusProduct.textContent = "Something went wrong.";
-        console.error(error);
     }
 }
 
@@ -52,15 +59,21 @@ fetchGameById(id);
 
 function addToCart(game) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItem = cart.find(item => String(item.id) === String(game.id));
 
+    if (existingItem) {
+        existingItem.qty = (existingItem.qty || 1) + 1;
+    } else {
     cart.push({
         id: game.id,
         title: game.title,
         price: game.price,
-        image: game.image.url
+        image: game.image.url,
+        qty: 1
     });
+}
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    alert("Added to cart!")
+    
 }

@@ -12,7 +12,7 @@ body {
 /* Header */
 
 header {
-    background-color: lightgreen;
+    background-color: green;
     color: white;
     padding: 1rem;
     display: flex;
@@ -108,4 +108,9 @@ select {
 .storeButton:hover {
     background-color: #222;
     transform: translateY(-2px);
+}
+
+.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
