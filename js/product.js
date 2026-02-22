@@ -74,6 +74,4 @@ function addToCart(game) {
 }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    
 }

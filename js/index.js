@@ -6,7 +6,6 @@ const genreFilter = document.getElementById("genreFilter");
 
 let allGames = [];
 
-// Fetch the games from the API
 async function fetchGames() {
     try {
         statusProduct.textContent = "Loading...";
@@ -30,8 +29,6 @@ async function fetchGames() {
         statusProduct.textContent = "Something went wrong.";
     }
 }
-
-// Adds the games fetched from the API to the HTML
 function renderGames(games) {
     productList.innerHTML = "";
 
