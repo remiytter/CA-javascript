@@ -48,11 +48,14 @@ function displayCart() {
 
     cart.forEach(item => {
         cartItemsEl.innerHTML += `
-            <article>
-                <h2>${item.title}</h2>
-                <p>${item.price} usd</p>
-                <p>Qty: ${item.qty}</p>
-                <button class="removeBtn" data-id="${item.id}">Remove</button>
+            <article class="cart-item">
+                <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                <div class="cart-item-info">
+                    <h2>${item.title}</h2>
+                    <p>${item.price} usd</p>
+                    <p>Qty: ${item.qty}</p>
+                    <button class="removeBtn" data-id="${item.id}">Remove</button>
+                </div>
             </article>
             `;
     });
